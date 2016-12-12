@@ -16,7 +16,8 @@
     $.get("/tasks").success( function( data ) {
       var htmlString = "";
       $.each(data, function(index, task) {
-        var liElement = '<li> <div class = "view"> <input class = "toggle" type = "checkbox"><lable>' + task.title + '</label></div></li>';
+        var checkStatus = task.done ? "checked" : "" 
+        var liElement = '<li> <div class = "view"> <input class = "toggle" type = "checkbox"' + checkStatus + '><lable>' + task.title + '</label></div></li>';
         htmlString += liElement;
       });
       var ulTodos = $('.todo-list');
