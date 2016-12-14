@@ -22,7 +22,7 @@ $(function() {
     // the value of the `done` field
     function toggleTask(e) {
       var itemId = $(e.target).data("id");
-
+      console.log(itemId)
       var doneValue = Boolean($(e.target).is(':checked'));
 
       $.post("/tasks/" + itemId, {
@@ -35,8 +35,14 @@ $(function() {
         var $li = $("#listItem-" + data.id);
         $li.replaceWith(liHtml);
         $('.toggle').change(toggleTask);
-
       } );
+
+      if (doneValue) {
+        $.post("/tasks/" + itemId, {
+          _method: 'DELETE',
+          dataType: 'JSON',
+        });
+      }
     }
 
     $.get("/tasks").success( function( data ) {

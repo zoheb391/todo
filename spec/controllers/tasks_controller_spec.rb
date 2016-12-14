@@ -40,4 +40,14 @@ RSpec.describe TasksController, type: :controller do
     end
   end
 
+  describe "task#destroy" do
+    it "should allow tasks to be destroyed" do
+      task = FactoryGirl.create(:task)
+
+      delete :destroy, id: task.id 
+      expect(response).to have_http_status(:success)
+      
+    end
+  end
+
 end
